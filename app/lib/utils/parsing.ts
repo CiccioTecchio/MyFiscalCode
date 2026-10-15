@@ -1,0 +1,7 @@
+export function removeSpaceAndSpecialCharacters(value: string): string {
+  return value
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toUpperCase()
+    .replace(/[^A-Z]/g, "");
+}
