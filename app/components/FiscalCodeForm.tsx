@@ -14,7 +14,6 @@ import {
 } from "@mui/material";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
-import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { useActionState } from "react";
 import { getFiscalCode, type FiscalCodeState } from "../action";
 
@@ -26,10 +25,10 @@ export default function FiscalCodeForm() {
   );
 
   return (
-    <form action={formAction} className="flex flex-col gap-4">
+    <form action={formAction} className="flex w-full flex-col gap-3 sm:gap-4">
       <Box>
-        <Grid container spacing={2}>
-          <Grid size={6}>
+        <Grid container spacing={{ xs: 1.5, sm: 2 }}>
+          <Grid size={{ xs: 12, sm: 6 }}>
             <TextField
               label="Cognome"
               name="surname"
@@ -38,7 +37,7 @@ export default function FiscalCodeForm() {
               value="Vicidomini"
             />
           </Grid>
-          <Grid size={6}>
+          <Grid size={{ xs: 12, sm: 6 }}>
             <TextField
               label="Nome"
               name="name"
@@ -47,53 +46,47 @@ export default function FiscalCodeForm() {
               value="Francesco"
             />
           </Grid>
-          <Grid size={4}>
+          <Grid size={{ xs: 12, md: 4 }}>
             <LocalizationProvider dateAdapter={AdapterMoment}>
-              <DemoContainer components={["DatePicker"]}>
-                <DatePicker
-                  label="Data di nascita"
-                  name="dateOfBirth"
-                  format="DD/MM/YYYY"
-                  slotProps={{
-                    textField: {
-                      fullWidth: true,
-                      required: true,
-                    },
-                  }}
-                />
-              </DemoContainer>
+              <DatePicker
+                label="Data di nascita"
+                name="dateOfBirth"
+                format="DD/MM/YYYY"
+                slotProps={{
+                  textField: {
+                    fullWidth: true,
+                    required: true,
+                  },
+                }}
+              />
             </LocalizationProvider>
           </Grid>
-          <Grid size={3}>
-            <div className="flex justify-center">
-              <FormControl>
+          <Grid size={{ xs: 12, md: 3 }}>
+            <div className="flex h-full items-center justify-center">
+              <FormControl className="w-full" required>
                 <FormLabel id="sex">Sesso</FormLabel>
-                <RadioGroup row aria-labelledby="sex" name="sex">
-                  <FormControlLabel
-                    value="M"
-                    control={<Radio />}
-                    label="Maschio"
-                    defaultChecked
-                  />
-                  <FormControlLabel
-                    value="F"
-                    control={<Radio />}
-                    label="Femmina"
-                  />
+                <RadioGroup
+                  row
+                  aria-labelledby="sex"
+                  name="sex"
+                  className="justify-center"
+                >
+                  <FormControlLabel value="M" control={<Radio />} label="M" />
+                  <FormControlLabel value="F" control={<Radio />} label="F" />
                 </RadioGroup>
               </FormControl>
             </div>
           </Grid>
-          <Grid size={5}>
+          <Grid size={{ xs: 12, md: 5 }}>
             <TextField
               label="Luogo di nascita"
               name="birthPlace"
+              placeholder="Inserisci Luogo o Paese di nascita"
               fullWidth
               required
-              value="Salerno"
             />
           </Grid>
-          <Grid size={12} className="flex justify-center">
+          <Grid size={12} className="flex justify-center pt-1 sm:pt-2">
             <div className="flex flex-col items-center gap-2">
               <Button
                 type="submit"
