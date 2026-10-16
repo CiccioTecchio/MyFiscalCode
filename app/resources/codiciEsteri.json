@@ -1,0 +1,1046 @@
+[
+  {
+    "nomeStato": "Albania",
+    "codice": "Z100"
+  },
+  {
+    "nomeStato": "Andorra",
+    "codice": "Z101"
+  },
+  {
+    "nomeStato": "Austria",
+    "codice": "Z102"
+  },
+  {
+    "nomeStato": "Belgio",
+    "codice": "Z103"
+  },
+  {
+    "nomeStato": "Bulgaria",
+    "codice": "Z104"
+  },
+  {
+    "nomeStato": "Danimarca",
+    "codice": "Z107"
+  },
+  {
+    "nomeStato": "Finlandia",
+    "codice": "Z109"
+  },
+  {
+    "nomeStato": "Francia",
+    "codice": "Z110"
+  },
+  {
+    "nomeStato": "Germania",
+    "codice": "Z112"
+  },
+  {
+    "nomeStato": "Regno Unito",
+    "codice": "Z114"
+  },
+  {
+    "nomeStato": "Grecia",
+    "codice": "Z115"
+  },
+  {
+    "nomeStato": "Irlanda",
+    "codice": "Z116"
+  },
+  {
+    "nomeStato": "Islanda",
+    "codice": "Z117"
+  },
+  {
+    "nomeStato": "Serbia e Montenegro",
+    "codice": "Z157"
+  },
+  {
+    "nomeStato": "Liechtenstein",
+    "codice": "Z119"
+  },
+  {
+    "nomeStato": "Lussemburgo",
+    "codice": "Z120"
+  },
+  {
+    "nomeStato": "Malta",
+    "codice": "Z121"
+  },
+  {
+    "nomeStato": "Monaco",
+    "codice": "Z123"
+  },
+  {
+    "nomeStato": "Norvegia",
+    "codice": "Z125"
+  },
+  {
+    "nomeStato": "Paesi Bassi",
+    "codice": "Z126"
+  },
+  {
+    "nomeStato": "Polonia",
+    "codice": "Z127"
+  },
+  {
+    "nomeStato": "Portogallo",
+    "codice": "Z128"
+  },
+  {
+    "nomeStato": "Romania",
+    "codice": "Z129"
+  },
+  {
+    "nomeStato": "San Marino",
+    "codice": "Z130"
+  },
+  {
+    "nomeStato": "Spagna",
+    "codice": "Z131"
+  },
+  {
+    "nomeStato": "Svezia",
+    "codice": "Z132"
+  },
+  {
+    "nomeStato": "Svizzera",
+    "codice": "Z133"
+  },
+  {
+    "nomeStato": "Ucraina",
+    "codice": "Z138"
+  },
+  {
+    "nomeStato": "Ungheria",
+    "codice": "Z134"
+  },
+  {
+    "nomeStato": "Federazione russa",
+    "codice": "Z154"
+  },
+  {
+    "nomeStato": "nomeStato della Città del Vaticano",
+    "codice": "Z106"
+  },
+  {
+    "nomeStato": "Estonia",
+    "codice": "Z144"
+  },
+  {
+    "nomeStato": "Lettonia",
+    "codice": "Z145"
+  },
+  {
+    "nomeStato": "Lituania",
+    "codice": "Z146"
+  },
+  {
+    "nomeStato": "Croazia",
+    "codice": "Z149"
+  },
+  {
+    "nomeStato": "Slovenia",
+    "codice": "Z150"
+  },
+  {
+    "nomeStato": "Bosnia-Erzegovina",
+    "codice": "Z153"
+  },
+  {
+    "nomeStato": "Macedonia del Nord",
+    "codice": "Z148"
+  },
+  {
+    "nomeStato": "Moldova",
+    "codice": "Z140"
+  },
+  {
+    "nomeStato": "Slovacchia",
+    "codice": "Z155"
+  },
+  {
+    "nomeStato": "Bielorussia",
+    "codice": "Z139"
+  },
+  {
+    "nomeStato": "Repubblica ceca",
+    "codice": "Z156"
+  },
+  {
+    "nomeStato": "Montenegro",
+    "codice": "Z159"
+  },
+  {
+    "nomeStato": "Serbia",
+    "codice": "Z158"
+  },
+  {
+    "nomeStato": "Kosovo",
+    "codice": "Z160"
+  },
+  {
+    "nomeStato": "Afghanistan",
+    "codice": "Z200"
+  },
+  {
+    "nomeStato": "Arabia Saudita",
+    "codice": "Z203"
+  },
+  {
+    "nomeStato": "Bahrein",
+    "codice": "Z204"
+  },
+  {
+    "nomeStato": "Bangladesh",
+    "codice": "Z249"
+  },
+  {
+    "nomeStato": "Bhutan",
+    "codice": "Z205"
+  },
+  {
+    "nomeStato": "Myanmar/Birmania",
+    "codice": "Z206"
+  },
+  {
+    "nomeStato": "Brunei Darussalam",
+    "codice": "Z207"
+  },
+  {
+    "nomeStato": "Cambogia",
+    "codice": "Z208"
+  },
+  {
+    "nomeStato": "Sri Lanka",
+    "codice": "Z209"
+  },
+  {
+    "nomeStato": "Cina",
+    "codice": "Z210"
+  },
+  {
+    "nomeStato": "Cipro",
+    "codice": "Z211"
+  },
+  {
+    "nomeStato": "Corea del Nord",
+    "codice": "Z214"
+  },
+  {
+    "nomeStato": "Corea del Sud",
+    "codice": "Z213"
+  },
+  {
+    "nomeStato": "Emirati Arabi Uniti",
+    "codice": "Z215"
+  },
+  {
+    "nomeStato": "Filippine",
+    "codice": "Z216"
+  },
+  {
+    "nomeStato": "Palestina",
+    "codice": "Z161"
+  },
+  {
+    "nomeStato": "Giappone",
+    "codice": "Z219"
+  },
+  {
+    "nomeStato": "Giordania",
+    "codice": "Z220"
+  },
+  {
+    "nomeStato": "India",
+    "codice": "Z222"
+  },
+  {
+    "nomeStato": "Indonesia",
+    "codice": "Z223"
+  },
+  {
+    "nomeStato": "Iran",
+    "codice": "Z224"
+  },
+  {
+    "nomeStato": "Iraq",
+    "codice": "Z225"
+  },
+  {
+    "nomeStato": "Israele",
+    "codice": "Z226"
+  },
+  {
+    "nomeStato": "Kuwait",
+    "codice": "Z227"
+  },
+  {
+    "nomeStato": "Laos",
+    "codice": "Z228"
+  },
+  {
+    "nomeStato": "Libano",
+    "codice": "Z229"
+  },
+  {
+    "nomeStato": "Timor Leste",
+    "codice": "Z242"
+  },
+  {
+    "nomeStato": "Maldive",
+    "codice": "Z232"
+  },
+  {
+    "nomeStato": "Malaysia",
+    "codice": "Z247"
+  },
+  {
+    "nomeStato": "Mongolia",
+    "codice": "Z233"
+  },
+  {
+    "nomeStato": "Nepal",
+    "codice": "Z234"
+  },
+  {
+    "nomeStato": "Oman",
+    "codice": "Z235"
+  },
+  {
+    "nomeStato": "Pakistan",
+    "codice": "Z236"
+  },
+  {
+    "nomeStato": "Qatar",
+    "codice": "Z237"
+  },
+  {
+    "nomeStato": "Singapore",
+    "codice": "Z248"
+  },
+  {
+    "nomeStato": "Siria",
+    "codice": "Z240"
+  },
+  {
+    "nomeStato": "Thailandia",
+    "codice": "Z241"
+  },
+  {
+    "nomeStato": "Turchia",
+    "codice": "Z243"
+  },
+  {
+    "nomeStato": "Vietnam",
+    "codice": "Z251"
+  },
+  {
+    "nomeStato": "Yemen",
+    "codice": "Z246"
+  },
+  {
+    "nomeStato": "Kazakhstan",
+    "codice": "Z255"
+  },
+  {
+    "nomeStato": "Uzbekistan",
+    "codice": "Z259"
+  },
+  {
+    "nomeStato": "Armenia",
+    "codice": "Z252"
+  },
+  {
+    "nomeStato": "Azerbaigian",
+    "codice": "Z253"
+  },
+  {
+    "nomeStato": "Georgia",
+    "codice": "Z254"
+  },
+  {
+    "nomeStato": "Kirghizistan",
+    "codice": "Z256"
+  },
+  {
+    "nomeStato": "Tagikistan",
+    "codice": "Z257"
+  },
+  {
+    "nomeStato": "Taiwan",
+    "codice": "Z217"
+  },
+  {
+    "nomeStato": "Turkmenistan",
+    "codice": "Z258"
+  },
+  {
+    "nomeStato": "Algeria",
+    "codice": "Z301"
+  },
+  {
+    "nomeStato": "Angola",
+    "codice": "Z302"
+  },
+  {
+    "nomeStato": "Costa d'Avorio",
+    "codice": "Z313"
+  },
+  {
+    "nomeStato": "Benin",
+    "codice": "Z314"
+  },
+  {
+    "nomeStato": "Botswana",
+    "codice": "Z358"
+  },
+  {
+    "nomeStato": "Burkina Faso",
+    "codice": "Z354"
+  },
+  {
+    "nomeStato": "Burundi",
+    "codice": "Z305"
+  },
+  {
+    "nomeStato": "Camerun",
+    "codice": "Z306"
+  },
+  {
+    "nomeStato": "Capo Verde",
+    "codice": "Z307"
+  },
+  {
+    "nomeStato": "Repubblica Centrafricana",
+    "codice": "Z308"
+  },
+  {
+    "nomeStato": "Ciad",
+    "codice": "Z309"
+  },
+  {
+    "nomeStato": "Comore",
+    "codice": "Z310"
+  },
+  {
+    "nomeStato": "Congo",
+    "codice": "Z311"
+  },
+  {
+    "nomeStato": "Egitto",
+    "codice": "Z336"
+  },
+  {
+    "nomeStato": "Etiopia",
+    "codice": "Z315"
+  },
+  {
+    "nomeStato": "Gabon",
+    "codice": "Z316"
+  },
+  {
+    "nomeStato": "Gambia",
+    "codice": "Z317"
+  },
+  {
+    "nomeStato": "Ghana",
+    "codice": "Z318"
+  },
+  {
+    "nomeStato": "Gibuti",
+    "codice": "Z361"
+  },
+  {
+    "nomeStato": "Guinea",
+    "codice": "Z319"
+  },
+  {
+    "nomeStato": "Guinea-Bissau",
+    "codice": "Z320"
+  },
+  {
+    "nomeStato": "Guinea equatoriale",
+    "codice": "Z321"
+  },
+  {
+    "nomeStato": "Kenya",
+    "codice": "Z322"
+  },
+  {
+    "nomeStato": "Lesotho",
+    "codice": "Z359"
+  },
+  {
+    "nomeStato": "Liberia",
+    "codice": "Z325"
+  },
+  {
+    "nomeStato": "Libia",
+    "codice": "Z326"
+  },
+  {
+    "nomeStato": "Madagascar",
+    "codice": "Z327"
+  },
+  {
+    "nomeStato": "Malawi",
+    "codice": "Z328"
+  },
+  {
+    "nomeStato": "Mali",
+    "codice": "Z329"
+  },
+  {
+    "nomeStato": "Marocco",
+    "codice": "Z330"
+  },
+  {
+    "nomeStato": "Mauritania",
+    "codice": "Z331"
+  },
+  {
+    "nomeStato": "Maurizio",
+    "codice": "Z332"
+  },
+  {
+    "nomeStato": "Mozambico",
+    "codice": "Z333"
+  },
+  {
+    "nomeStato": "Namibia",
+    "codice": "Z300"
+  },
+  {
+    "nomeStato": "Niger",
+    "codice": "Z334"
+  },
+  {
+    "nomeStato": "Nigeria",
+    "codice": "Z335"
+  },
+  {
+    "nomeStato": "Ruanda",
+    "codice": "Z338"
+  },
+  {
+    "nomeStato": "Sao Tomé e Principe",
+    "codice": "Z341"
+  },
+  {
+    "nomeStato": "Seychelles",
+    "codice": "Z342"
+  },
+  {
+    "nomeStato": "Senegal",
+    "codice": "Z343"
+  },
+  {
+    "nomeStato": "Sierra Leone",
+    "codice": "Z344"
+  },
+  {
+    "nomeStato": "Somalia",
+    "codice": "Z345"
+  },
+  {
+    "nomeStato": "Sudafrica",
+    "codice": "Z347"
+  },
+  {
+    "nomeStato": "Sudan",
+    "codice": "Z348"
+  },
+  {
+    "nomeStato": "Eswatini",
+    "codice": "Z349"
+  },
+  {
+    "nomeStato": "Tanzania",
+    "codice": "Z357"
+  },
+  {
+    "nomeStato": "Togo",
+    "codice": "Z351"
+  },
+  {
+    "nomeStato": "Tunisia",
+    "codice": "Z352"
+  },
+  {
+    "nomeStato": "Uganda",
+    "codice": "Z353"
+  },
+  {
+    "nomeStato": "Repubblica Democratica del Congo",
+    "codice": "Z312"
+  },
+  {
+    "nomeStato": "Zambia",
+    "codice": "Z355"
+  },
+  {
+    "nomeStato": "Zimbabwe",
+    "codice": "Z337"
+  },
+  {
+    "nomeStato": "Eritrea",
+    "codice": "Z368"
+  },
+  {
+    "nomeStato": "Sud Sudan",
+    "codice": "Z907"
+  },
+  {
+    "nomeStato": "Antigua e Barbuda",
+    "codice": "Z532"
+  },
+  {
+    "nomeStato": "Bahamas",
+    "codice": "Z502"
+  },
+  {
+    "nomeStato": "Barbados",
+    "codice": "Z522"
+  },
+  {
+    "nomeStato": "Belize",
+    "codice": "Z512"
+  },
+  {
+    "nomeStato": "Canada",
+    "codice": "Z401"
+  },
+  {
+    "nomeStato": "Costa Rica",
+    "codice": "Z503"
+  },
+  {
+    "nomeStato": "Cuba",
+    "codice": "Z504"
+  },
+  {
+    "nomeStato": "Dominica",
+    "codice": "Z526"
+  },
+  {
+    "nomeStato": "Repubblica Dominicana",
+    "codice": "Z505"
+  },
+  {
+    "nomeStato": "El Salvador",
+    "codice": "Z506"
+  },
+  {
+    "nomeStato": "Giamaica",
+    "codice": "Z507"
+  },
+  {
+    "nomeStato": "Grenada",
+    "codice": "Z524"
+  },
+  {
+    "nomeStato": "Guatemala",
+    "codice": "Z509"
+  },
+  {
+    "nomeStato": "Haiti",
+    "codice": "Z510"
+  },
+  {
+    "nomeStato": "Honduras",
+    "codice": "Z511"
+  },
+  {
+    "nomeStato": "Messico",
+    "codice": "Z514"
+  },
+  {
+    "nomeStato": "Nicaragua",
+    "codice": "Z515"
+  },
+  {
+    "nomeStato": "Panama",
+    "codice": "Z516"
+  },
+  {
+    "nomeStato": "Santa Lucia",
+    "codice": "Z527"
+  },
+  {
+    "nomeStato": "Saint Vincent e Grenadine",
+    "codice": "Z528"
+  },
+  {
+    "nomeStato": "Saint Kitts e Nevis",
+    "codice": "Z533"
+  },
+  {
+    "nomeStato": "Stati Uniti d'America",
+    "codice": "Z404"
+  },
+  {
+    "nomeStato": "Argentina",
+    "codice": "Z600"
+  },
+  {
+    "nomeStato": "Bolivia",
+    "codice": "Z601"
+  },
+  {
+    "nomeStato": "Brasile",
+    "codice": "Z602"
+  },
+  {
+    "nomeStato": "Cile",
+    "codice": "Z603"
+  },
+  {
+    "nomeStato": "Colombia",
+    "codice": "Z604"
+  },
+  {
+    "nomeStato": "Ecuador",
+    "codice": "Z605"
+  },
+  {
+    "nomeStato": "Guyana",
+    "codice": "Z606"
+  },
+  {
+    "nomeStato": "Paraguay",
+    "codice": "Z610"
+  },
+  {
+    "nomeStato": "Perù",
+    "codice": "Z611"
+  },
+  {
+    "nomeStato": "Suriname",
+    "codice": "Z608"
+  },
+  {
+    "nomeStato": "Trinidad e Tobago",
+    "codice": "Z612"
+  },
+  {
+    "nomeStato": "Uruguay",
+    "codice": "Z613"
+  },
+  {
+    "nomeStato": "Venezuela",
+    "codice": "Z614"
+  },
+  {
+    "nomeStato": "Australia",
+    "codice": "Z700"
+  },
+  {
+    "nomeStato": "Figi",
+    "codice": "Z704"
+  },
+  {
+    "nomeStato": "Kiribati",
+    "codice": "Z731"
+  },
+  {
+    "nomeStato": "Isole Marshall",
+    "codice": "Z711"
+  },
+  {
+    "nomeStato": "Stati Federati di Micronesia",
+    "codice": "Z735"
+  },
+  {
+    "nomeStato": "Nauru",
+    "codice": "Z713"
+  },
+  {
+    "nomeStato": "Nuova Zelanda",
+    "codice": "Z719"
+  },
+  {
+    "nomeStato": "Palau",
+    "codice": "Z734"
+  },
+  {
+    "nomeStato": "Papua Nuova Guinea",
+    "codice": "Z730"
+  },
+  {
+    "nomeStato": "Isole Salomone",
+    "codice": "Z724"
+  },
+  {
+    "nomeStato": "Samoa",
+    "codice": "Z726"
+  },
+  {
+    "nomeStato": "Tonga",
+    "codice": "Z728"
+  },
+  {
+    "nomeStato": "Tuvalu",
+    "codice": "Z732"
+  },
+  {
+    "nomeStato": "Vanuatu",
+    "codice": "Z733"
+  },
+  {
+    "nomeStato": "Cecoslovacchia",
+    "codice": "Z105"
+  },
+  {
+    "nomeStato": "Unione Sovietica",
+    "codice": "Z135"
+  },
+  {
+    "nomeStato": "Germania Ovest",
+    "codice": null
+  },
+  {
+    "nomeStato": "Germania Est",
+    "codice": "Z111"
+  },
+  {
+    "nomeStato": "Jugoslavia",
+    "codice": "Z118"
+  },
+  {
+    "nomeStato": "Yemen del Nord",
+    "codice": null
+  },
+  {
+    "nomeStato": "Yemen del Sud",
+    "codice": "Z250"
+  },
+  {
+    "nomeStato": "Ceuta",
+    "codice": null
+  },
+  {
+    "nomeStato": "Melilla",
+    "codice": null
+  },
+  {
+    "nomeStato": "Isole Minori Esterne degli Stati Uniti d'America",
+    "codice": null
+  },
+  {
+    "nomeStato": "Nuova Caledonia",
+    "codice": "Z716"
+  },
+  {
+    "nomeStato": "Saint-Martin (FR)",
+    "codice": null
+  },
+  {
+    "nomeStato": "Sahara occidentale",
+    "codice": "Z339"
+  },
+  {
+    "nomeStato": "Saint-Barthélemy",
+    "codice": null
+  },
+  {
+    "nomeStato": "Antille olandesi",
+    "codice": "Z501 "
+  },
+  {
+    "nomeStato": "Bermuda",
+    "codice": "Z400"
+  },
+  {
+    "nomeStato": "Isole Cook (NZ)",
+    "codice": "Z703"
+  },
+  {
+    "nomeStato": "Gibilterra",
+    "codice": "Z113"
+  },
+  {
+    "nomeStato": "Isole Cayman",
+    "codice": "Z530"
+  },
+  {
+    "nomeStato": "Guadalupa",
+    "codice": "Z508"
+  },
+  {
+    "nomeStato": "Martinica",
+    "codice": "Z513"
+  },
+  {
+    "nomeStato": "Anguilla",
+    "codice": "Z529"
+  },
+  {
+    "nomeStato": "Porto Rico",
+    "codice": "Z518"
+  },
+  {
+    "nomeStato": "Polinesia francese",
+    "codice": "Z723"
+  },
+  {
+    "nomeStato": "Isole Fær Øer",
+    "codice": "Z108"
+  },
+  {
+    "nomeStato": "Jersey",
+    "codice": null
+  },
+  {
+    "nomeStato": "Aruba",
+    "codice": null
+  },
+  {
+    "nomeStato": "Sint Maarten (NL)",
+    "codice": null
+  },
+  {
+    "nomeStato": "Riunione",
+    "codice": "Z324"
+  },
+  {
+    "nomeStato": "Groenlandia",
+    "codice": "Z402"
+  },
+  {
+    "nomeStato": "Bonaire, Saint Eustatius e Saba",
+    "codice": null
+  },
+  {
+    "nomeStato": "Guam",
+    "codice": "Z706"
+  },
+  {
+    "nomeStato": "Sark",
+    "codice": null
+  },
+  {
+    "nomeStato": "Guernsey",
+    "codice": null
+  },
+  {
+    "nomeStato": "Guyana Francese",
+    "codice": "Z607"
+  },
+  {
+    "nomeStato": "Heard e McDonald",
+    "codice": null
+  },
+  {
+    "nomeStato": "Hong Kong",
+    "codice": "Z221"
+  },
+  {
+    "nomeStato": "Isola di Natale",
+    "codice": "Z702"
+  },
+  {
+    "nomeStato": "Isole Aland",
+    "codice": null
+  },
+  {
+    "nomeStato": "Macao",
+    "codice": "Z231"
+  },
+  {
+    "nomeStato": "Isole Falkland (Malvine)",
+    "codice": "Z609"
+  },
+  {
+    "nomeStato": "Isola di Man",
+    "codice": "Z122"
+  },
+  {
+    "nomeStato": "Isole delle Marianne settentrionali",
+    "codice": "Z710"
+  },
+  {
+    "nomeStato": "Mayotte",
+    "codice": "Z360"
+  },
+  {
+    "nomeStato": "Montserrat",
+    "codice": "Z531"
+  },
+  {
+    "nomeStato": "Niue",
+    "codice": "Z714"
+  },
+  {
+    "nomeStato": "Curaçao",
+    "codice": null
+  },
+  {
+    "nomeStato": "Isola Norfolk",
+    "codice": "Z715"
+  },
+  {
+    "nomeStato": "Isole Pitcairn",
+    "codice": "Z722"
+  },
+  {
+    "nomeStato": "Antartide",
+    "codice": null
+  },
+  {
+    "nomeStato": "Isole Cocos",
+    "codice": "Z212"
+  },
+  {
+    "nomeStato": "Territorio Britannico dell'Oceano Indiano",
+    "codice": null
+  },
+  {
+    "nomeStato": "Georgia del Sud e Sandwich Australi",
+    "codice": null
+  },
+  {
+    "nomeStato": "Saint Pierre e Miquelon",
+    "codice": "Z403"
+  },
+  {
+    "nomeStato": "Samoa Americane",
+    "codice": "Z725"
+  },
+  {
+    "nomeStato": "Sant'Elena",
+    "codice": "Z340"
+  },
+  {
+    "nomeStato": "Bouvet, isola",
+    "codice": null
+  },
+  {
+    "nomeStato": "Svalbard e Jan Mayen",
+    "codice": null
+  },
+  {
+    "nomeStato": "Terre australi e antartiche francesi",
+    "codice": null
+  },
+  {
+    "nomeStato": "Tokelau",
+    "codice": "Z727"
+  },
+  {
+    "nomeStato": "Isole Turks e Caicos",
+    "codice": "Z519"
+  },
+  {
+    "nomeStato": "Isole Vergini britanniche",
+    "codice": "Z525"
+  },
+  {
+    "nomeStato": "Isole Vergini americane",
+    "codice": "Z520"
+  },
+  {
+    "nomeStato": "Wallis e Futuna",
+    "codice": "Z729"
+  }
+]

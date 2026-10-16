@@ -2,6 +2,7 @@ import moment from "moment";
 import { removeSpaceAndSpecialCharacters } from "../utils/parsing";
 import { dbConnect } from "../utils/mongodb";
 import { ComuneModel } from "@/app/models/Comune";
+import { StatoModel } from "@/app/models/Stato";
 export class PersonData {
   private surname: string;
   private name: string;
@@ -52,8 +53,20 @@ export class PersonData {
 
   async getBirthPlaceCode(): Promise<string> {
     await dbConnect();
-    const comuni = await ComuneModel.findOne({ nomeComune: this.birthPlace });
-    return comuni ? comuni.codiceComune : "";
+    let toReturn = "";
+    const comuniItaliani = await ComuneModel.findOne({
+      nomeComune: this.birthPlace,
+    });
+    if (!comuniItaliani) {
+      const statoEstero = await StatoModel.findOne({
+        nomeStato: this.birthPlace,
+      });
+      toReturn = statoEstero ? statoEstero.codice : "";
+    } else {
+      toReturn = comuniItaliani ? comuniItaliani.codiceComune : "";
+    }
+    console.log(toReturn);
+    return toReturn;
   }
 
   getControlCharacterCode(partialFiscalCode: string): string {
