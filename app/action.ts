@@ -1,6 +1,7 @@
 "use server";
 import { PersonData } from "@/app/lib/types/PersonData";
 import moment from "moment";
+import { IsBornInItaly } from "./lib/types/IsBornInItaly";
 
 export type FiscalCodeState = {
   fiscalCode: string;
@@ -17,7 +18,8 @@ export async function getFiscalCode(
     formData.get("dateOfBirth") as string,
     "DD/MM/YYYY",
   );
-
+  const isBornInItaly: IsBornInItaly =
+    (formData.get("isBornInItaly") as IsBornInItaly) || "";
   const sex = formData.get("sex") as "M" | "F";
   const birthPlace = formData.get("birthPlace") as string;
 
@@ -26,9 +28,10 @@ export async function getFiscalCode(
     name,
     dateOfBirth,
     sex,
+    isBornInItaly,
     birthPlace,
   );
-
+  console.log(personData);
   const surnameCode = personData.getSurnameCode();
   const nameCode = personData.getNameCode();
   const dateOfBirthCode = personData.getDateOfBirthCode();

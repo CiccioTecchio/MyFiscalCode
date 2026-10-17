@@ -14,8 +14,9 @@ import {
 } from "@mui/material";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
-import { useActionState } from "react";
+import { useActionState, useState } from "react";
 import { getFiscalCode, type FiscalCodeState } from "../action";
+import { IsBornInItaly } from "../lib/types/IsBornInItaly";
 
 export default function FiscalCodeForm() {
   const initialState: FiscalCodeState = { fiscalCode: "", error: null };
@@ -23,27 +24,72 @@ export default function FiscalCodeForm() {
     getFiscalCode,
     initialState,
   );
+  const [isBornInItaly, setIsBornInItaly] = useState<IsBornInItaly>("");
 
+  const defaultTxtBornPlace = () => {
+    return (
+      <TextField
+        label="Inserisci Luogo o Stato di nascita"
+        name="birthPlace"
+        placeholder="Inserisci Luogo o Stato di nascita"
+        fullWidth
+        disabled
+      />
+    );
+  };
+  const bornPlace = () => {
+    return (
+      <TextField
+        label="Luogo di nascita"
+        name="birthPlace"
+        placeholder="Inserisci Luogo di nascita"
+        fullWidth
+        required
+      />
+    );
+  };
+
+  const bornState = () => {
+    return (
+      <TextField
+        label="Stato di nascita"
+        name="birthPlace"
+        placeholder="Inserisci Stato di nascita"
+        fullWidth
+        required
+      />
+    );
+  };
+  const bornPlaceOrState = () => {
+    switch (isBornInItaly) {
+      case "Y":
+        return bornPlace();
+      case "N":
+        return bornState();
+      default:
+        return defaultTxtBornPlace();
+    }
+  };
   return (
     <form action={formAction} className="flex w-full flex-col gap-3 sm:gap-4">
       <Box>
         <Grid container spacing={{ xs: 1.5, sm: 2 }}>
-          <Grid size={{ xs: 12, sm: 6 }}>
-            <TextField
-              label="Cognome"
-              name="surname"
-              fullWidth
-              required
-              value="Vicidomini"
-            />
-          </Grid>
-          <Grid size={{ xs: 12, sm: 6 }}>
+          <Grid size={{ xs: 12, sm: 4 }}>
             <TextField
               label="Nome"
               name="name"
               fullWidth
               required
               value="Francesco"
+            />
+          </Grid>
+          <Grid size={{ xs: 12, sm: 4 }}>
+            <TextField
+              label="Cognome"
+              name="surname"
+              fullWidth
+              required
+              value="Vicidomini"
             />
           </Grid>
           <Grid size={{ xs: 12, md: 4 }}>
@@ -61,6 +107,27 @@ export default function FiscalCodeForm() {
               />
             </LocalizationProvider>
           </Grid>
+          <Grid size={{ xs: 12, sm: 4 }}>
+            <div className="flex h-full justify-center items-center">
+              <FormControl className="w-full" required>
+                <FormLabel id="isBornInItaly">Sei nato/a in Italia?</FormLabel>
+                <RadioGroup
+                  row
+                  aria-label="are you born in Italy"
+                  name="isBornInItaly"
+                  className="justify-center"
+                  value={isBornInItaly}
+                  onChange={(event) => {
+                    setIsBornInItaly(event.target.value as IsBornInItaly);
+                  }}
+                >
+                  <FormControlLabel value="Y" control={<Radio />} label="Sì" />
+                  <FormControlLabel value="N" control={<Radio />} label="No" />
+                </RadioGroup>
+              </FormControl>
+            </div>
+          </Grid>
+          <Grid size={{ xs: 12, md: 5 }}>{bornPlaceOrState()}</Grid>
           <Grid size={{ xs: 12, md: 3 }}>
             <div className="flex h-full items-center justify-center">
               <FormControl className="w-full" required>
@@ -76,15 +143,6 @@ export default function FiscalCodeForm() {
                 </RadioGroup>
               </FormControl>
             </div>
-          </Grid>
-          <Grid size={{ xs: 12, md: 5 }}>
-            <TextField
-              label="Luogo di nascita"
-              name="birthPlace"
-              placeholder="Inserisci Luogo o Paese di nascita"
-              fullWidth
-              required
-            />
           </Grid>
           <Grid size={12} className="flex justify-center pt-1 sm:pt-2">
             <div className="flex flex-col items-center gap-2">

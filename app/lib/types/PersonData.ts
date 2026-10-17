@@ -3,11 +3,13 @@ import { removeSpaceAndSpecialCharacters } from "../utils/parsing";
 import { dbConnect } from "../utils/mongodb";
 import { ComuneModel } from "@/app/models/Comune";
 import { StatoModel } from "@/app/models/Stato";
+import { IsBornInItaly } from "./IsBornInItaly";
 export class PersonData {
   private surname: string;
   private name: string;
   private dateOfBirth: moment.Moment;
   private sex: "M" | "F";
+  private isBornInItaly: IsBornInItaly;
   private birthPlace: string;
 
   constructor(
@@ -15,12 +17,14 @@ export class PersonData {
     name: string,
     dateOfBirth: moment.Moment,
     sex: "M" | "F",
+    isBornInItaly: IsBornInItaly,
     birthPlace: string,
   ) {
     this.surname = surname;
     this.name = name;
     this.dateOfBirth = dateOfBirth;
     this.sex = sex;
+    this.isBornInItaly = isBornInItaly;
     this.birthPlace = birthPlace;
   }
 
@@ -54,18 +58,42 @@ export class PersonData {
   async getBirthPlaceCode(): Promise<string> {
     await dbConnect();
     let toReturn = "";
-    const comuniItaliani = await ComuneModel.findOne({
-      nomeComune: this.birthPlace,
-    });
-    if (!comuniItaliani) {
-      const statoEstero = await StatoModel.findOne({
-        nomeStato: this.birthPlace,
-      });
-      toReturn = statoEstero ? statoEstero.codice : "";
-    } else {
-      toReturn = comuniItaliani ? comuniItaliani.codiceComune : "";
+
+    switch (this.isBornInItaly) {
+      case "Y":
+        {
+          try {
+            const comuniItaliani = await ComuneModel.findOne({
+              nomeComune: this.birthPlace,
+            });
+            toReturn = comuniItaliani ? comuniItaliani.codiceComune : "";
+          } catch (error) {
+            console.error(
+              "Something went wrong while retrieving the place of birth",
+              error,
+            );
+          }
+        }
+        break;
+      case "N":
+        {
+          try {
+            const statoEstero = await StatoModel.findOne({
+              nomeStato: this.birthPlace,
+            });
+            toReturn = statoEstero ? statoEstero.codice : "";
+          } catch (error) {
+            console.error(
+              "Something went wrong while retrieving the State of birth",
+              error,
+            );
+          }
+        }
+        break;
+      default: {
+        console.error("Something went wrong");
+      }
     }
-    console.log(toReturn);
     return toReturn;
   }
 
