@@ -14,9 +14,10 @@ import {
 } from "@mui/material";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
-import { useActionState, useState } from "react";
+import { FormEvent, startTransition, useActionState, useState } from "react";
 import { getFiscalCode, type FiscalCodeState } from "../action";
 import { IsBornInItaly } from "../lib/types/IsBornInItaly";
+import BornPlace from "./BornPlace";
 
 export default function FiscalCodeForm() {
   const initialState: FiscalCodeState = { fiscalCode: "", error: null };
@@ -37,60 +38,34 @@ export default function FiscalCodeForm() {
       />
     );
   };
-  const bornPlace = () => {
-    return (
-      <TextField
-        label="Luogo di nascita"
-        name="birthPlace"
-        placeholder="Inserisci Luogo di nascita"
-        fullWidth
-        required
-      />
-    );
+
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    startTransition(() => {
+      formAction(formData);
+    });
   };
 
-  const bornState = () => {
-    return (
-      <TextField
-        label="Stato di nascita"
-        name="birthPlace"
-        placeholder="Inserisci Stato di nascita"
-        fullWidth
-        required
-      />
+  const bornPlaceOrState = () => {
+    return isBornInItaly !== "" ? (
+      <BornPlace key={isBornInItaly} isBornInItaly={isBornInItaly} />
+    ) : (
+      defaultTxtBornPlace()
     );
   };
-  const bornPlaceOrState = () => {
-    switch (isBornInItaly) {
-      case "Y":
-        return bornPlace();
-      case "N":
-        return bornState();
-      default:
-        return defaultTxtBornPlace();
-    }
-  };
   return (
-    <form action={formAction} className="flex w-full flex-col gap-3 sm:gap-4">
+    <form
+      onSubmit={handleSubmit}
+      className="flex w-full flex-col gap-3 sm:gap-4"
+    >
       <Box>
         <Grid container spacing={{ xs: 1.5, sm: 2 }}>
           <Grid size={{ xs: 12, sm: 4 }}>
-            <TextField
-              label="Nome"
-              name="name"
-              fullWidth
-              required
-              value="Francesco"
-            />
+            <TextField label="Nome" name="name" fullWidth required />
           </Grid>
           <Grid size={{ xs: 12, sm: 4 }}>
-            <TextField
-              label="Cognome"
-              name="surname"
-              fullWidth
-              required
-              value="Vicidomini"
-            />
+            <TextField label="Cognome" name="surname" fullWidth required />
           </Grid>
           <Grid size={{ xs: 12, md: 4 }}>
             <LocalizationProvider dateAdapter={AdapterMoment}>

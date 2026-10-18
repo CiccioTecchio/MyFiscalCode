@@ -21,8 +21,10 @@ export async function getFiscalCode(
   const isBornInItaly: IsBornInItaly =
     (formData.get("isBornInItaly") as IsBornInItaly) || "";
   const sex = formData.get("sex") as "M" | "F";
-  const birthPlace = formData.get("birthPlace") as string;
-
+  let birthPlace = formData.get("birthPlace") as string;
+  birthPlace = isBornInItaly
+    ? birthPlace.substring(0, birthPlace.length - 5) //remove province
+    : birthPlace;
   const personData = new PersonData(
     surname,
     name,
@@ -31,7 +33,7 @@ export async function getFiscalCode(
     isBornInItaly,
     birthPlace,
   );
-  console.log(personData);
+  //console.log(personData);
   const surnameCode = personData.getSurnameCode();
   const nameCode = personData.getNameCode();
   const dateOfBirthCode = personData.getDateOfBirthCode();
@@ -46,7 +48,7 @@ export async function getFiscalCode(
     if (partialFiscalCode.length !== 15)
       throw new Error("Wrong size of partialFiscalCode");
     const fiscalCode = partialFiscalCode + controlCharacterCode;
-    return { fiscalCode: fiscalCode, error: null };
+    return { fiscalCode, error: null };
   } catch (error) {
     console.error("Failed to calculate fiscal code", error);
     return { fiscalCode: "", error: "Failed to calculate fiscal code" };

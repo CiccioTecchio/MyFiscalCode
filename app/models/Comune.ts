@@ -2,6 +2,7 @@ import mongoose, { Schema } from "mongoose";
 
 export const ComuneSchema = new Schema({
   nomeComune: { type: String, required: true },
+  provincia: { type: String, required: true },
   codiceComune: { type: String, required: true },
 });
 
