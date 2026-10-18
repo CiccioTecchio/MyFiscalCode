@@ -16,8 +16,12 @@ const config: Config = {
   // Include anche questi file se una suite non li importa ancora: in questo
   // modo il report rende visibile la copertura mancante invece di ometterli.
   collectCoverageFrom: [
+    "app/api/birth-place/route.ts",
+    "app/components/BornPlace.tsx",
+    "app/components/FiscalCodeForm.tsx",
     "app/lib/types/PersonData.ts",
     "app/lib/utils/parsing.ts",
+    "app/action.ts",
   ],
   coverageDirectory: "coverage",
   coverageProvider: "v8",
