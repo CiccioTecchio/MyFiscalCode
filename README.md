@@ -16,6 +16,21 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+## End-to-end tests
+
+The Playwright tests use a dedicated MongoDB database. Start MongoDB locally,
+then configure and seed a database whose name ends in `-e2e`:
+
+```bash
+export MONGODB_URI="mongodb://127.0.0.1:27017/myfiscalcode-e2e"
+export MONGODB_DB_NAME="myfiscalcode-e2e"
+npm run test:e2e:seed
+npm run test:e2e
+```
+
+Use `npm run test:e2e:ui` to inspect and debug the scenarios interactively.
+The GitHub Actions workflow starts and seeds its own MongoDB service.
+
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.

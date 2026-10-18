@@ -9,6 +9,7 @@ const config: Config = {
   clearMocks: true,
   testEnvironment: "jsdom",
   setupFilesAfterEnv: ["<rootDir>/jest.setup.ts"],
+  testPathIgnorePatterns: ["<rootDir>/tests/"],
   moduleNameMapper: {
     "^@/(.*)$": "<rootDir>/$1",
   },
