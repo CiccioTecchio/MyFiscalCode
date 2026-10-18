@@ -14,10 +14,26 @@ import {
 } from "@mui/material";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
-import { FormEvent, startTransition, useActionState, useState } from "react";
+import {
+  startTransition,
+  useActionState,
+  useRef,
+  useState,
+  type ChangeEvent,
+  type FormEvent,
+} from "react";
 import { getFiscalCode, type FiscalCodeState } from "../action";
 import { IsBornInItaly } from "../lib/types/IsBornInItaly";
 import BornPlace from "./BornPlace";
+
+type ValidatedTextField = "name" | "surname";
+
+type TextFieldValidation = {
+  dirty: boolean;
+  invalid: boolean;
+};
+
+const NO_DIGITS_PATTERN = "[^0-9]*";
 
 export default function FiscalCodeForm() {
   const initialState: FiscalCodeState = { fiscalCode: "", error: null };
@@ -26,6 +42,27 @@ export default function FiscalCodeForm() {
     initialState,
   );
   const [isBornInItaly, setIsBornInItaly] = useState<IsBornInItaly>("");
+  const [isNativeFormValid, setIsNativeFormValid] = useState(false);
+  const [isBirthPlaceSelected, setIsBirthPlaceSelected] = useState(false);
+  const [textFieldValidation, setTextFieldValidation] = useState<
+    Record<ValidatedTextField, TextFieldValidation>
+  >({
+    name: { dirty: false, invalid: false },
+    surname: { dirty: false, invalid: false },
+  });
+  const formRef = useRef<HTMLFormElement>(null);
+
+  const nameHasError =
+    textFieldValidation.name.dirty && textFieldValidation.name.invalid;
+  const surnameHasError =
+    textFieldValidation.surname.dirty && textFieldValidation.surname.invalid;
+
+  const isFormComplete =
+    isNativeFormValid &&
+    isBornInItaly !== "" &&
+    isBirthPlaceSelected &&
+    !nameHasError &&
+    !surnameHasError;
 
   const defaultTxtBornPlace = () => {
     return (
@@ -47,25 +84,66 @@ export default function FiscalCodeForm() {
     });
   };
 
+  const updateNativeFormValidity = () => {
+    setIsNativeFormValid(formRef.current?.checkValidity() ?? false);
+  };
+
+  const handleValidatedTextChange =
+    (field: ValidatedTextField) =>
+    (event: ChangeEvent<HTMLInputElement>) => {
+      setTextFieldValidation((currentValidation) => ({
+        ...currentValidation,
+        [field]: {
+          dirty: true,
+          invalid: /\d/.test(event.target.value),
+        },
+      }));
+    };
+
   const bornPlaceOrState = () => {
     return isBornInItaly !== "" ? (
-      <BornPlace key={isBornInItaly} isBornInItaly={isBornInItaly} />
+      <BornPlace
+        key={isBornInItaly}
+        isBornInItaly={isBornInItaly}
+        onValidityChange={setIsBirthPlaceSelected}
+      />
     ) : (
       defaultTxtBornPlace()
     );
   };
   return (
     <form
+      ref={formRef}
       onSubmit={handleSubmit}
+      onInput={updateNativeFormValidity}
+      onChange={updateNativeFormValidity}
       className="flex w-full flex-col gap-3 sm:gap-4"
     >
       <Box>
         <Grid container spacing={{ xs: 1.5, sm: 2 }}>
           <Grid size={{ xs: 12, sm: 4 }}>
-            <TextField label="Nome" name="name" fullWidth required />
+            <TextField
+              label="Nome"
+              name="name"
+              fullWidth
+              required
+              error={nameHasError}
+              helperText={nameHasError ? "Formato non valido" : undefined}
+              onChange={handleValidatedTextChange("name")}
+              slotProps={{ htmlInput: { pattern: NO_DIGITS_PATTERN } }}
+            />
           </Grid>
           <Grid size={{ xs: 12, sm: 4 }}>
-            <TextField label="Cognome" name="surname" fullWidth required />
+            <TextField
+              label="Cognome"
+              name="surname"
+              fullWidth
+              required
+              error={surnameHasError}
+              helperText={surnameHasError ? "Formato non valido" : undefined}
+              onChange={handleValidatedTextChange("surname")}
+              slotProps={{ htmlInput: { pattern: NO_DIGITS_PATTERN } }}
+            />
           </Grid>
           <Grid size={{ xs: 12, md: 4 }}>
             <LocalizationProvider dateAdapter={AdapterMoment}>
@@ -93,11 +171,20 @@ export default function FiscalCodeForm() {
                   className="justify-center"
                   value={isBornInItaly}
                   onChange={(event) => {
+                    setIsBirthPlaceSelected(false);
                     setIsBornInItaly(event.target.value as IsBornInItaly);
                   }}
                 >
-                  <FormControlLabel value="Y" control={<Radio />} label="Sì" />
-                  <FormControlLabel value="N" control={<Radio />} label="No" />
+                  <FormControlLabel
+                    value="Y"
+                    control={<Radio required />}
+                    label="Sì"
+                  />
+                  <FormControlLabel
+                    value="N"
+                    control={<Radio required />}
+                    label="No"
+                  />
                 </RadioGroup>
               </FormControl>
             </div>
@@ -113,8 +200,16 @@ export default function FiscalCodeForm() {
                   name="sex"
                   className="justify-center"
                 >
-                  <FormControlLabel value="M" control={<Radio />} label="M" />
-                  <FormControlLabel value="F" control={<Radio />} label="F" />
+                  <FormControlLabel
+                    value="M"
+                    control={<Radio required />}
+                    label="M"
+                  />
+                  <FormControlLabel
+                    value="F"
+                    control={<Radio required />}
+                    label="F"
+                  />
                 </RadioGroup>
               </FormControl>
             </div>
@@ -125,7 +220,7 @@ export default function FiscalCodeForm() {
                 type="submit"
                 variant="contained"
                 color="primary"
-                disabled={isPending}
+                disabled={isPending || !isFormComplete}
               >
                 Calcola codice fiscale
               </Button>
