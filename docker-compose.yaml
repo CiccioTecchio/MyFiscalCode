@@ -1,0 +1,54 @@
+services:
+  mongo:
+    image: mongo:9
+    restart: unless-stopped
+    volumes:
+      - mongo-data:/data/db
+    healthcheck:
+      test:
+        ["CMD", "mongosh", "--quiet", "--eval", "db.adminCommand('ping').ok"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  mongo-seed:
+    image: mongo:9
+    depends_on:
+      mongo:
+        condition: service_healthy
+    volumes:
+      - ./app/resources:/seed-data:ro
+    entrypoint: ["/bin/sh", "-c"]
+    command:
+      - |
+        set -eu
+        mongoimport \
+          --uri="mongodb://mongo:27017/myfiscalcode" \
+          --collection=comuniItaliani \
+          --file=/seed-data/comuniItaliani.json \
+          --jsonArray \
+          --drop
+        mongoimport \
+          --uri="mongodb://mongo:27017/myfiscalcode" \
+          --collection=codiciEsteri \
+          --file=/seed-data/codiciEsteri.json \
+          --jsonArray \
+          --drop
+    restart: "no"
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    depends_on:
+      mongo-seed:
+        condition: service_completed_successfully
+    environment:
+      MONGODB_DB_NAME: myfiscalcode
+      MONGODB_URI: mongodb://mongo:27017/myfiscalcode
+    ports:
+      - "${APP_PORT:-3000}:3000"
+
+volumes:
+  mongo-data:
