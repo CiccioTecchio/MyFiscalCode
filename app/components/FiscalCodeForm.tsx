@@ -24,6 +24,7 @@ import {
 import { getFiscalCode, type FiscalCodeState } from "../action";
 import { IsBornInItaly } from "../lib/types/IsBornInItaly";
 import BornPlace from "./BornPlace";
+import FiscalCodeError from "./FiscalCodeError";
 import FiscalCodeResult from "./FiscalCodeResult";
 
 type ValidatedTextField = "name" | "surname";
@@ -243,9 +244,13 @@ export default function FiscalCodeForm() {
           </Grid>
         </Grid>
       </Box>
-      <div aria-live="polite">
-        {state.error && <p>{state.error}</p>}
-        {state.fiscalCode && <FiscalCodeResult fiscalCode={state.fiscalCode} />}
+      <div>
+        {state.error && <FiscalCodeError message={state.error} />}
+        <div aria-live="polite">
+          {state.fiscalCode && (
+            <FiscalCodeResult fiscalCode={state.fiscalCode} />
+          )}
+        </div>
       </div>
     </form>
   );

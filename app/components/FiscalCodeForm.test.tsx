@@ -187,10 +187,8 @@ describe("FiscalCodeForm", () => {
 
     fireEvent.click(getSubmitButton());
 
-    expect(
-      await screen.findByText(
-        "Non è stato possibile calcolare il codice fiscale.",
-      ),
-    ).toBeInTheDocument();
+    expect(await screen.findByRole("alert")).toHaveTextContent(
+      "Non è stato possibile calcolare il codice fiscale.",
+    );
   });
 });
