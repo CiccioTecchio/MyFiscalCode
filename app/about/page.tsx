@@ -11,32 +11,38 @@ export default function AboutPage() {
       </p>
       <p>
         L&apos;idea mi è venuta quando avevo bisogno di calcolare un codice
-        fiscale e ho pensato &quot;Perché devo mandare i miei dati sensibili su
-        un server chissà dove ed una volta arrivati i miei dati sul server
-        chissà come vengono elaborati.&quot;
+        fiscale ed ho pensato: &quot;Perché devo mandare dei dati sensibili su
+        un server chissà dove? Ed una volta che i dati sono giunti a
+        destinazione, come vengono elaborati?&quot;
       </p>
       <p>
-        Così mi sono detto &quot;se vuoi una cosa fatta bene, fattela da
-        solo&quot; e quindi ho fatto questo esercizio.
+        Così mi sono detto: &quot;se vuoi una cosa fatta bene, fattela da
+        solo&quot; ed ho fatto questo esercizio.
       </p>
-      <p>
-        {" "}
-        Il funzionamento è molto semplice, l&apos;utente compila la form, una
-        action lato server effettua il calcolo del codice fiscale e se tutti i
-        dati sono corretti lo restituisce all&apos;utente altrimenti errore.
-      </p>
+      <div>
+        <p>Il funzionamento è molto semplice:</p>
+        <ol className="mt-2 list-decimal space-y-1 pl-6">
+          <li>l&apos;utente compila la form</li>
+          <li>una action lato server effettua il calcolo del codice fiscale</li>
+          <li>
+            se tutti i dati sono corretti restituisce codice fiscale elaborato;
+            altrimenti errore.
+          </li>
+        </ol>
+      </div>
       <p>
         I dati inseriti vengono inviati al server ed elaborati esclusivamente
-        per calcolare il codice fiscale. L’applicazione non li salva nel
-        database né li registra intenzionalmente nei log.
+        per calcolare il codice fiscale. L’applicazione non salva nella nel
+        database né registra intenzionalmente i log.
       </p>
       <p>
-        L&apos;unico dato persistente di questo sistema è la lista dei comuni
-        italiani che uso per far l&apos;associazione luogo di nascita → codice
-        del luogo di nascita.
+        Gli unici dati persistenti in questo sistema sono la lista dei comuni e
+        la lista degli Stati esteri. Queste liste vengono consultate per
+        ottenere il codice alfanumerico di 4 cifre da associare al luogo di
+        nascita.
       </p>
       <p>
-        Inoltre, puoi consultare tutto il codice sorgente nel repository{" "}
+        Inoltre, il codice sorgente è consulabile al link{" "}
         <a
           href="https://github.com/CiccioTecchio/MyFiscalCode"
           target="_blank"
