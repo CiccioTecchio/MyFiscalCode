@@ -4,6 +4,7 @@ import Link from "next/link";
 import {
   Box,
   Button,
+  CircularProgress,
   FormControl,
   FormControlLabel,
   FormLabel,
@@ -224,14 +225,23 @@ export default function FiscalCodeForm() {
           </Grid>
           <Grid size={12} className="flex justify-center pt-1 sm:pt-2">
             <div className="flex flex-col items-center gap-2">
-              <Button
-                type="submit"
-                variant="contained"
-                color="primary"
-                disabled={isPending || !isFormComplete}
-              >
-                Calcola codice fiscale
-              </Button>
+              {isPending ? (
+                <CircularProgress
+                  size={36}
+                  aria-label="Calcolo in corso"
+                  color="primary"
+                />
+              ) : (
+                <Button
+                  type="submit"
+                  variant="contained"
+                  color="primary"
+                  disabled={!isFormComplete}
+                >
+                  Calcola codice fiscale
+                </Button>
+              )}
+
               <p className="max-w-lg text-center text-xs text-slate-700">
                 I dati vengono elaborati sul server per effettuare il calcolo e
                 non vengono salvati nel database. Leggi l&apos;{" "}

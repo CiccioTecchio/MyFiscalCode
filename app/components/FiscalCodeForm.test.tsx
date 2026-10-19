@@ -1,4 +1,10 @@
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import {
+  act,
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+} from "@testing-library/react";
 
 jest.mock("@mui/x-date-pickers", () => ({
   LocalizationProvider: ({ children }: { children: React.ReactNode }) => (
@@ -56,7 +62,7 @@ jest.mock("../action", () => ({
   getFiscalCode: jest.fn(),
 }));
 
-import { getFiscalCode } from "../action";
+import { getFiscalCode, type FiscalCodeState } from "../action";
 import FiscalCodeForm from "./FiscalCodeForm";
 
 const mockGetFiscalCode = jest.mocked(getFiscalCode);
@@ -175,6 +181,30 @@ describe("FiscalCodeForm", () => {
     const submittedData = mockGetFiscalCode.mock.calls[0][1];
     expect(submittedData.get("name")).toBe("Mario");
     expect(submittedData.get("birthPlace")).toBe("Roma");
+  });
+
+  it("mostra un indicatore di caricamento durante il calcolo", async () => {
+    let resolveAction: (state: FiscalCodeState) => void = () => undefined;
+    mockGetFiscalCode.mockImplementation(
+      () =>
+        new Promise((resolve) => {
+          resolveAction = resolve;
+        }),
+    );
+    render(<FiscalCodeForm />);
+    await completeForm();
+
+    fireEvent.click(getSubmitButton());
+
+    expect(
+      await screen.findByRole("progressbar", { name: "Calcolo in corso" }),
+    ).toBeInTheDocument();
+
+    await act(async () => {
+      resolveAction({ fiscalCode: "RSSMRA61A01H501U", error: null });
+    });
+
+    await waitFor(() => expect(getSubmitButton()).toBeInTheDocument());
   });
 
   it("mostra l'errore restituito dalla server action", async () => {
