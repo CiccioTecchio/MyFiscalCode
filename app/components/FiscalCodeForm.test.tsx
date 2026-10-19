@@ -65,7 +65,7 @@ function getSubmitButton() {
   return screen.getByRole("button", { name: "Calcola codice fiscale" });
 }
 
-async function completeForm() {
+async function fillRequiredFieldsExceptSex() {
   fireEvent.input(screen.getByRole("textbox", { name: "Nome" }), {
     target: { value: "Mario" },
   });
@@ -80,6 +80,10 @@ async function completeForm() {
     await screen.findByRole("textbox", { name: "Luogo di nascita" }),
     { target: { value: "Roma" } },
   );
+}
+
+async function completeForm() {
+  await fillRequiredFieldsExceptSex();
   fireEvent.click(screen.getByRole("radio", { name: "M" }));
 
   await waitFor(() => expect(getSubmitButton()).toBeEnabled());
@@ -140,6 +144,20 @@ describe("FiscalCodeForm", () => {
     expect(getSubmitButton()).toBeEnabled();
   });
 
+  it("richiede una scelta per il sesso senza marcare le singole opzioni come required", async () => {
+    render(<FiscalCodeForm />);
+
+    await fillRequiredFieldsExceptSex();
+
+    expect(screen.getByRole("radio", { name: "M" })).not.toBeRequired();
+    expect(screen.getByRole("radio", { name: "F" })).not.toBeRequired();
+    expect(getSubmitButton()).toBeDisabled();
+
+    fireEvent.click(screen.getByRole("radio", { name: "F" }));
+
+    await waitFor(() => expect(getSubmitButton()).toBeEnabled());
+  });
+
   it("invia il form e mostra il codice fiscale restituito", async () => {
     mockGetFiscalCode.mockResolvedValue({
       fiscalCode: "RSSMRA61A01H501U",
@@ -152,8 +170,8 @@ describe("FiscalCodeForm", () => {
 
     await waitFor(() => expect(mockGetFiscalCode).toHaveBeenCalledTimes(1));
     expect(
-      await screen.findByText("RSSMRA61A01H501U"),
-    ).toBeInTheDocument();
+      await screen.findByRole("textbox", { name: "Il tuo codice fiscale" }),
+    ).toHaveValue("RSSMRA61A01H501U");
     const submittedData = mockGetFiscalCode.mock.calls[0][1];
     expect(submittedData.get("name")).toBe("Mario");
     expect(submittedData.get("birthPlace")).toBe("Roma");

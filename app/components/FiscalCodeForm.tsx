@@ -24,8 +24,10 @@ import {
 import { getFiscalCode, type FiscalCodeState } from "../action";
 import { IsBornInItaly } from "../lib/types/IsBornInItaly";
 import BornPlace from "./BornPlace";
+import FiscalCodeResult from "./FiscalCodeResult";
 
 type ValidatedTextField = "name" | "surname";
+type Sex = "" | "M" | "F";
 
 type TextFieldValidation = {
   dirty: boolean;
@@ -41,6 +43,7 @@ export default function FiscalCodeForm() {
     initialState,
   );
   const [isBornInItaly, setIsBornInItaly] = useState<IsBornInItaly>("");
+  const [sex, setSex] = useState<Sex>("");
   const [isNativeFormValid, setIsNativeFormValid] = useState(false);
   const [isBirthPlaceSelected, setIsBirthPlaceSelected] = useState(false);
   const [textFieldValidation, setTextFieldValidation] = useState<
@@ -60,6 +63,7 @@ export default function FiscalCodeForm() {
     isNativeFormValid &&
     isBornInItaly !== "" &&
     isBirthPlaceSelected &&
+    sex !== "" &&
     !nameHasError &&
     !surnameHasError;
 
@@ -88,8 +92,7 @@ export default function FiscalCodeForm() {
   };
 
   const handleValidatedTextInput =
-    (field: ValidatedTextField) =>
-    (event: FormEvent<HTMLInputElement>) => {
+    (field: ValidatedTextField) => (event: FormEvent<HTMLInputElement>) => {
       const invalid = /\d/.test(event.currentTarget.value);
 
       setTextFieldValidation((currentValidation) => ({
@@ -119,6 +122,7 @@ export default function FiscalCodeForm() {
       onInput={updateNativeFormValidity}
       onChange={updateNativeFormValidity}
       className="flex w-full flex-col gap-3 sm:gap-4"
+      autoComplete="off"
     >
       <Box>
         <Grid container spacing={{ xs: 1.5, sm: 2 }}>
@@ -208,17 +212,11 @@ export default function FiscalCodeForm() {
                   aria-labelledby="sex"
                   name="sex"
                   className="justify-center"
+                  value={sex}
+                  onChange={(event) => setSex(event.target.value as Sex)}
                 >
-                  <FormControlLabel
-                    value="M"
-                    control={<Radio required />}
-                    label="M"
-                  />
-                  <FormControlLabel
-                    value="F"
-                    control={<Radio required />}
-                    label="F"
-                  />
+                  <FormControlLabel value="M" control={<Radio />} label="M" />
+                  <FormControlLabel value="F" control={<Radio />} label="F" />
                 </RadioGroup>
               </FormControl>
             </div>
@@ -247,11 +245,7 @@ export default function FiscalCodeForm() {
       </Box>
       <div aria-live="polite">
         {state.error && <p>{state.error}</p>}
-        {state.fiscalCode && (
-          <p>
-            Codice fiscale: <strong>{state.fiscalCode}</strong>
-          </p>
-        )}
+        {state.fiscalCode && <FiscalCodeResult fiscalCode={state.fiscalCode} />}
       </div>
     </form>
   );

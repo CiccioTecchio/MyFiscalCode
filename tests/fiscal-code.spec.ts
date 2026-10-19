@@ -57,9 +57,9 @@ test.describe("calcolo del codice fiscale", () => {
     await expect(submit).toBeEnabled();
     await submit.click();
 
-    await expect(page.getByText("Codice fiscale:")).toContainText(
-      "RSSMRA61A01H501R",
-    );
+    await expect(
+      page.getByRole("textbox", { name: "Il tuo codice fiscale" }),
+    ).toHaveValue("RSSMRA61A01H501R");
   });
 
   test("un'utente nata all'estero compila il form e ottiene il codice corretto", async ({
@@ -83,8 +83,66 @@ test.describe("calcolo del codice fiscale", () => {
     await expect(submit).toBeEnabled();
     await submit.click();
 
-    await expect(page.getByText("Codice fiscale:")).toContainText(
-      "VRDNNA90M55Z110V",
+    await expect(
+      page.getByRole("textbox", { name: "Il tuo codice fiscale" }),
+    ).toHaveValue("VRDNNA90M55Z110V");
+  });
+
+  test("copia il codice fiscale calcolato negli appunti", async ({ page }) => {
+    await page.evaluate(() => {
+      Object.defineProperty(navigator, "clipboard", {
+        configurable: true,
+        value: {
+          writeText: async (text: string) => {
+            (
+              window as Window & {
+                copiedFiscalCode?: string;
+              }
+            ).copiedFiscalCode = text;
+          },
+        },
+      });
+    });
+
+    await page.getByRole("textbox", { name: "Nome", exact: true }).fill("Mario");
+    await page
+      .getByRole("textbox", { name: "Cognome", exact: true })
+      .fill("Rossi");
+    await fillDate(page, { day: "01", month: "01", year: "1961" });
+    await selectBirthPlace(page, {
+      bornInItaly: true,
+      query: "Roma",
+      option: "Roma - RM",
+    });
+    await page.getByRole("radio", { name: "M", exact: true }).check();
+    await page
+      .getByRole("button", { name: "Calcola codice fiscale" })
+      .click();
+
+    const fiscalCode = "RSSMRA61A01H501R";
+    await expect(
+      page.getByRole("textbox", { name: "Il tuo codice fiscale" }),
+    ).toHaveValue(fiscalCode);
+
+    await page.getByRole("button", { name: "Copia", exact: true }).click();
+
+    await expect
+      .poll(() =>
+        page.evaluate(
+          () =>
+            (
+              window as Window & {
+                copiedFiscalCode?: string;
+              }
+            ).copiedFiscalCode,
+        ),
+      )
+      .toBe(fiscalCode);
+    await expect(
+      page.getByRole("button", { name: "Copiato", exact: true }),
+    ).toBeVisible();
+    await expect(page.getByRole("status")).toHaveText(
+      "Codice fiscale copiato negli appunti.",
     );
   });
 });
@@ -111,6 +169,38 @@ test.describe("validazione del form", () => {
     await expect(
       page.getByRole("button", { name: "Calcola codice fiscale" }),
     ).toBeDisabled();
+  });
+
+  test("richiede una scelta per il sesso senza asterischi sulle opzioni", async ({
+    page,
+  }) => {
+    await page.getByRole("textbox", { name: "Nome", exact: true }).fill("Mario");
+    await page
+      .getByRole("textbox", { name: "Cognome", exact: true })
+      .fill("Rossi");
+    await fillDate(page, { day: "01", month: "01", year: "1961" });
+    await selectBirthPlace(page, {
+      bornInItaly: true,
+      query: "Roma",
+      option: "Roma - RM",
+    });
+
+    const male = page.getByRole("radio", { name: "M", exact: true });
+    const female = page.getByRole("radio", { name: "F", exact: true });
+    expect(
+      await male.evaluate((element: HTMLInputElement) => element.required),
+    ).toBe(false);
+    expect(
+      await female.evaluate((element: HTMLInputElement) => element.required),
+    ).toBe(false);
+
+    const submit = page.getByRole("button", {
+      name: "Calcola codice fiscale",
+    });
+    await expect(submit).toBeDisabled();
+
+    await female.check();
+    await expect(submit).toBeEnabled();
   });
 
   for (const { field, value } of [
