@@ -15,3 +15,23 @@ tasks:
     desc: Run in development mode
     cmds:
       - npm run dev
+  docker-build:
+    desc: Build the application image with Docker Compose
+    cmds:
+      - docker compose build
+  docker-run:
+    desc: Start the application and MongoDB in the background
+    cmds:
+      - docker compose up -d
+  docker-down:
+    desc: Stop the application and MongoDB
+    cmds:
+      - docker compose down
+  docker-logs:
+    desc: Follow the application logs
+    cmds:
+      - docker compose logs -f app
+  run-playwright:
+    desc: Run playwright tests
+    cmds:
+      - npx playwright test
