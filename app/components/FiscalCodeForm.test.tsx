@@ -66,10 +66,10 @@ function getSubmitButton() {
 }
 
 async function completeForm() {
-  fireEvent.change(screen.getByRole("textbox", { name: "Nome" }), {
+  fireEvent.input(screen.getByRole("textbox", { name: "Nome" }), {
     target: { value: "Mario" },
   });
-  fireEvent.change(screen.getByRole("textbox", { name: "Cognome" }), {
+  fireEvent.input(screen.getByRole("textbox", { name: "Cognome" }), {
     target: { value: "Rossi" },
   });
   fireEvent.change(screen.getByRole("textbox", { name: "Data di nascita" }), {
@@ -110,7 +110,7 @@ describe("FiscalCodeForm", () => {
   ])("segnala il formato non valido per $label", ({ label, value }) => {
     render(<FiscalCodeForm />);
 
-    fireEvent.change(screen.getByRole("textbox", { name: label }), {
+    fireEvent.input(screen.getByRole("textbox", { name: label }), {
       target: { value },
     });
 

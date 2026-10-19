@@ -19,7 +19,6 @@ import {
   useActionState,
   useRef,
   useState,
-  type ChangeEvent,
   type FormEvent,
 } from "react";
 import { getFiscalCode, type FiscalCodeState } from "../action";
@@ -88,14 +87,16 @@ export default function FiscalCodeForm() {
     setIsNativeFormValid(formRef.current?.checkValidity() ?? false);
   };
 
-  const handleValidatedTextChange =
+  const handleValidatedTextInput =
     (field: ValidatedTextField) =>
-    (event: ChangeEvent<HTMLInputElement>) => {
+    (event: FormEvent<HTMLInputElement>) => {
+      const invalid = /\d/.test(event.currentTarget.value);
+
       setTextFieldValidation((currentValidation) => ({
         ...currentValidation,
         [field]: {
           dirty: true,
-          invalid: /\d/.test(event.target.value),
+          invalid,
         },
       }));
     };
@@ -129,8 +130,12 @@ export default function FiscalCodeForm() {
               required
               error={nameHasError}
               helperText={nameHasError ? "Formato non valido" : undefined}
-              onChange={handleValidatedTextChange("name")}
-              slotProps={{ htmlInput: { pattern: NO_DIGITS_PATTERN } }}
+              slotProps={{
+                htmlInput: {
+                  pattern: NO_DIGITS_PATTERN,
+                  onInput: handleValidatedTextInput("name"),
+                },
+              }}
             />
           </Grid>
           <Grid size={{ xs: 12, sm: 4 }}>
@@ -141,8 +146,12 @@ export default function FiscalCodeForm() {
               required
               error={surnameHasError}
               helperText={surnameHasError ? "Formato non valido" : undefined}
-              onChange={handleValidatedTextChange("surname")}
-              slotProps={{ htmlInput: { pattern: NO_DIGITS_PATTERN } }}
+              slotProps={{
+                htmlInput: {
+                  pattern: NO_DIGITS_PATTERN,
+                  onInput: handleValidatedTextInput("surname"),
+                },
+              }}
             />
           </Grid>
           <Grid size={{ xs: 12, md: 4 }}>
