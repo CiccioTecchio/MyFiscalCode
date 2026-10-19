@@ -23,6 +23,7 @@ const config: Config = {
     "app/lib/types/PersonData.ts",
     "app/lib/utils/parsing.ts",
     "app/action.ts",
+    "proxy.ts",
   ],
   coverageDirectory: "coverage",
   coverageProvider: "v8",
