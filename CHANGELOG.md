@@ -1,4 +1,8 @@
-# 1.0.0
+# 1.1.0
+
+- added i18n
+
+## 1.0.0
 
 First release of **my-fiscal-code**!
 

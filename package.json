@@ -1,7 +1,13 @@
 {
   "name": "my-fiscal-code",
-  "version": "1.0.0",
-  "private": true,
+  "version": "1.1.0",
+  "private": false,
+  "author": {
+    "name": "Francesco Vicidomini",
+    "url": "https://francescovicidomini.dev",
+    "email": "fr.vicidomini94@gmail.com"
+  },
+  "license": "MIT",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
