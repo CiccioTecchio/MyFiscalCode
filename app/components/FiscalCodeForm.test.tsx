@@ -6,6 +6,19 @@ import {
   waitFor,
 } from "@testing-library/react";
 
+jest.mock("next-intl", () => ({
+  useTranslations: (namespace: string) => {
+    const messages = jest.requireActual(
+      "../../messages/it-IT.json",
+    ) as Record<string, Record<string, string>>;
+    const translate = (key: string) => messages[namespace][key];
+
+    return Object.assign(translate, {
+      rich: (key: string) => translate(key).replace(/<[^>]+>/g, ""),
+    });
+  },
+}));
+
 jest.mock("@mui/x-date-pickers", () => ({
   LocalizationProvider: ({ children }: { children: React.ReactNode }) => (
     <>{children}</>
@@ -197,7 +210,7 @@ describe("FiscalCodeForm", () => {
     fireEvent.click(getSubmitButton());
 
     expect(
-      await screen.findByRole("progressbar", { name: "Calcolo in corso" }),
+      await screen.findByRole("progressbar", { name: "Calcolo in corso..." }),
     ).toBeInTheDocument();
 
     await act(async () => {

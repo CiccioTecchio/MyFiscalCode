@@ -1,6 +1,16 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import FiscalCodeResult from "./FiscalCodeResult";
 
+jest.mock("next-intl", () => ({
+  useTranslations: (namespace: string) => {
+    const messages = jest.requireActual(
+      "../../messages/it-IT.json",
+    ) as Record<string, Record<string, string>>;
+
+    return (key: string) => messages[namespace][key];
+  },
+}));
+
 describe("FiscalCodeResult", () => {
   const writeText = jest.fn();
 

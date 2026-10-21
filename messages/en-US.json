@@ -1,0 +1,90 @@
+{
+  "HomePage": {
+    "title": "Calculate your Italian fiscal code"
+  },
+  "FiscalForm": {
+    "addPlaceOrStateOfBirth": "Add Place or State of birth",
+    "name": "Name",
+    "surname": "Surname",
+    "dateOfBirth": "Date of birth",
+    "bornInItaly": "Are you born in Italy?",
+    "y": "Yes",
+    "n": "No",
+    "gender": "Gender",
+    "calculating": "Calculating...",
+    "submit": "Calculate Fiscal code",
+    "privacyNotice": "The data is processed on the server to perform the calculation and is not stored in the database. Read the <privacy>privacy policy</privacy>.",
+    "invalidFormat": "Invalid format"
+  },
+  "FiscalCodeResult": {
+    "unavailableCp": "Clipboard API unavailable",
+    "computedFiscalCode": "Your fiscal code is:",
+    "yourFC": "Your Fiscal Code",
+    "copied": "Copied",
+    "copy": "Copy",
+    "cpCopiatedSucc": "Fiscal code copiated to the clipboard",
+    "cpCopiatedFailed": "Copy failed: Select the code manually."
+  },
+  "PrivacyPage": {
+    "metadata": {
+      "title": "Privacy policy | My Fiscal Code",
+      "description": "Information about the processing of personal data."
+    },
+    "title": "Privacy policy",
+    "lastUpdated": "Last updated: October 16, 2026",
+    "controller": {
+      "title": "Data controller",
+      "defaultName": "My Fiscal Code operator",
+      "contact": "Contact: <email>{address}</email>",
+      "missingContact": "Before publishing, configure a contact email address with the <variable>PRIVACY_CONTACT_EMAIL</variable> environment variable."
+    },
+    "dataProcessed": {
+      "title": "Data processed",
+      "body": "To calculate the Italian fiscal code, the application processes first name, last name, date of birth, sex, and place of birth. While you browse, the infrastructure provider may also process technical data, such as your IP address, user agent, and request information."
+    },
+    "purpose": {
+      "title": "Purposes and legal basis",
+      "body": "The data entered in the form is used exclusively to calculate and return the requested Italian fiscal code. Processing is necessary to provide the service requested by the user. Any technical data is processed to operate and protect the website."
+    },
+    "storage": {
+      "title": "Processing and retention",
+      "body": "The calculation takes place on the server. The application does not save the data entered in the form to the database and does not intentionally record it in logs. The data remains in memory only for the time needed to process the request. Technical providers may retain logs according to their own configurations and retention policies."
+    },
+    "recipients": {
+      "title": "Recipients and service providers",
+      "body": "The website is hosted on Vercel. The cadastral code lookup is performed in the MongoDB database configured by the controller. These providers may process the technical data required to deliver their respective services. Any transfers outside the European Economic Area take place under the safeguards provided by the providers and applicable law."
+    },
+    "cookies": {
+      "title": "Cookies and tracking technologies",
+      "body": "The application code does not use profiling cookies, behavioral advertising, or analytics tools. If non-essential tools are introduced in the future, this policy and the consent collection process will be updated before their activation."
+    },
+    "rights": {
+      "title": "Your rights",
+      "body": "Where provided by law, users may request access to, rectification or erasure of their data, restriction of processing, or object to processing. They may also lodge a complaint with the <authority>Italian Data Protection Authority</authority>."
+    },
+    "provision": {
+      "title": "Providing your data",
+      "body": "Providing the data requested by the form is optional, but the Italian fiscal code cannot be calculated without it."
+    }
+  },
+  "AboutPage": {
+    "metadata": {
+      "title": "About | My Fiscal Code",
+      "description": "Information about the My Fiscal Code project and how it works."
+    },
+    "title": "About",
+    "introduction": "I built this website to practice with Next.js and deploying it on Vercel.",
+    "motivation": "The idea came to me when I needed to calculate an Italian fiscal code and thought: “Why should I send sensitive data to some unknown server? And once the data reaches its destination, how is it processed?”",
+    "response": "So I told myself: “if you want something done right, do it yourself,” and I built this project.",
+    "howItWorks": "It works in three simple steps:",
+    "steps": {
+      "form": "the user fills out the form",
+      "calculation": "a Server Action calculates the Italian fiscal code",
+      "result": "if all the data is valid, it returns the calculated fiscal code; otherwise, it returns an error."
+    },
+    "processing": "The data is sent to the server and processed only to calculate the Italian fiscal code. The application does not save it to the database or intentionally record it in logs.",
+    "persistentData": "The only persistent data in this system is the list of Italian municipalities and the list of foreign countries. These lists are used to obtain the four-character alphanumeric cadastral code associated with the place of birth.",
+    "source": "The source code is available in the <repository>MyFiscalCode repository on GitHub</repository>.",
+    "repositoryAriaLabel": "Open the MyFiscalCode repository on GitHub"
+  }
+}

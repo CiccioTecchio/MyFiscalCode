@@ -6,6 +6,7 @@ import {
   InputBase,
   Typography,
 } from "@mui/material";
+import { useTranslations } from "next-intl";
 import { useState, type FocusEvent } from "react";
 
 type FiscalCodeProps = {
@@ -18,6 +19,7 @@ type CopyState = {
 };
 
 const FiscalCodeResult = ({ fiscalCode }: FiscalCodeProps) => {
+  const t = useTranslations("FiscalCodeResult");
   const [copyState, setCopyState] = useState<CopyState | null>(null);
   const copyStatus =
     copyState?.fiscalCode === fiscalCode ? copyState.status : "idle";
@@ -25,7 +27,7 @@ const FiscalCodeResult = ({ fiscalCode }: FiscalCodeProps) => {
   const copyFiscalCode = async () => {
     try {
       if (!navigator.clipboard) {
-        throw new Error("Clipboard API unavailable");
+        throw new Error(t("unavailableCp"));
       }
 
       await navigator.clipboard.writeText(fiscalCode);
@@ -45,7 +47,7 @@ const FiscalCodeResult = ({ fiscalCode }: FiscalCodeProps) => {
         variant="body2"
         className="mb-2 font-medium text-slate-700"
       >
-        Codice fiscale calcolato
+        {t("computedFiscalCode")}
       </Typography>
       <Box className="flex flex-col gap-2 sm:flex-row">
         <InputBase
@@ -58,7 +60,7 @@ const FiscalCodeResult = ({ fiscalCode }: FiscalCodeProps) => {
           className="rounded-md border border-slate-700/25 bg-slate-800/5 px-3 py-1"
           slotProps={{
             input: {
-              "aria-label": "Il tuo codice fiscale",
+              "aria-label": t("yourFC"),
               className:
                 "font-mono text-center text-base font-semibold tracking-wider",
             },
@@ -71,7 +73,7 @@ const FiscalCodeResult = ({ fiscalCode }: FiscalCodeProps) => {
           onClick={copyFiscalCode}
           className="border-slate-700/40 text-slate-800 sm:min-w-28"
         >
-          {copyStatus === "copied" ? "Copiato" : "Copia"}
+          {copyStatus === "copied" ? t("copied") : t("copy")}
         </Button>
       </Box>
       {copyStatus !== "idle" && (
@@ -87,8 +89,8 @@ const FiscalCodeResult = ({ fiscalCode }: FiscalCodeProps) => {
           }
         >
           {copyStatus === "copied"
-            ? "Codice fiscale copiato negli appunti."
-            : "Copia non riuscita: seleziona il codice manualmente."}
+            ? t("cpCopiatedSucc")
+            : t("cpCopiatedFailed")}
         </Typography>
       )}
     </Box>

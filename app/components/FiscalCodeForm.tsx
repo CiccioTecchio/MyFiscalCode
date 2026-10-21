@@ -27,6 +27,7 @@ import { IsBornInItaly } from "../lib/types/IsBornInItaly";
 import BornPlace from "./BornPlace";
 import FiscalCodeError from "./FiscalCodeError";
 import FiscalCodeResult from "./FiscalCodeResult";
+import { useTranslations } from "next-intl";
 
 type ValidatedTextField = "name" | "surname";
 type Sex = "" | "M" | "F";
@@ -39,6 +40,7 @@ type TextFieldValidation = {
 const NO_DIGITS_PATTERN = "[^0-9]*";
 
 export default function FiscalCodeForm() {
+  const t = useTranslations("FiscalForm");
   const initialState: FiscalCodeState = { fiscalCode: "", error: null };
   const [state, formAction, isPending] = useActionState(
     getFiscalCode,
@@ -72,9 +74,9 @@ export default function FiscalCodeForm() {
   const defaultTxtBornPlace = () => {
     return (
       <TextField
-        label="Inserisci Luogo o Stato di nascita"
+        label={t("addPlaceOrStateOfBirth")}
         name="birthPlace"
-        placeholder="Inserisci Luogo o Stato di nascita"
+        placeholder={t("addPlaceOrStateOfBirth")}
         fullWidth
         disabled
       />
@@ -130,12 +132,12 @@ export default function FiscalCodeForm() {
         <Grid container spacing={{ xs: 1.5, sm: 2 }}>
           <Grid size={{ xs: 12, sm: 4 }}>
             <TextField
-              label="Nome"
+              label={t("name")}
               name="name"
               fullWidth
               required
               error={nameHasError}
-              helperText={nameHasError ? "Formato non valido" : undefined}
+              helperText={nameHasError ? t("invalidFormat") : undefined}
               slotProps={{
                 htmlInput: {
                   pattern: NO_DIGITS_PATTERN,
@@ -146,12 +148,12 @@ export default function FiscalCodeForm() {
           </Grid>
           <Grid size={{ xs: 12, sm: 4 }}>
             <TextField
-              label="Cognome"
+              label={t("surname")}
               name="surname"
               fullWidth
               required
               error={surnameHasError}
-              helperText={surnameHasError ? "Formato non valido" : undefined}
+              helperText={surnameHasError ? t("invalidFormat") : undefined}
               slotProps={{
                 htmlInput: {
                   pattern: NO_DIGITS_PATTERN,
@@ -163,7 +165,7 @@ export default function FiscalCodeForm() {
           <Grid size={{ xs: 12, md: 4 }}>
             <LocalizationProvider dateAdapter={AdapterMoment}>
               <DatePicker
-                label="Data di nascita"
+                label={t("dateOfBirth")}
                 name="dateOfBirth"
                 format="DD/MM/YYYY"
                 slotProps={{
@@ -178,10 +180,10 @@ export default function FiscalCodeForm() {
           <Grid size={{ xs: 12, sm: 4 }}>
             <div className="flex h-full justify-center items-center">
               <FormControl className="w-full" required>
-                <FormLabel id="isBornInItaly">Sei nato/a in Italia?</FormLabel>
+                <FormLabel id="isBornInItaly">{t("bornInItaly")}</FormLabel>
                 <RadioGroup
                   row
-                  aria-label="are you born in Italy"
+                  aria-label={t("bornInItaly")}
                   name="isBornInItaly"
                   className="justify-center"
                   value={isBornInItaly}
@@ -192,13 +194,13 @@ export default function FiscalCodeForm() {
                 >
                   <FormControlLabel
                     value="Y"
-                    control={<Radio required />}
-                    label="Sì"
+                    control={<Radio />}
+                    label={t("y")}
                   />
                   <FormControlLabel
                     value="N"
-                    control={<Radio required />}
-                    label="No"
+                    control={<Radio />}
+                    label={t("n")}
                   />
                 </RadioGroup>
               </FormControl>
@@ -208,7 +210,7 @@ export default function FiscalCodeForm() {
           <Grid size={{ xs: 12, md: 3 }}>
             <div className="flex h-full items-center justify-center">
               <FormControl className="w-full" required>
-                <FormLabel id="sex">Sesso</FormLabel>
+                <FormLabel id="sex">{t("gender")}</FormLabel>
                 <RadioGroup
                   row
                   aria-labelledby="sex"
@@ -228,7 +230,7 @@ export default function FiscalCodeForm() {
               {isPending ? (
                 <CircularProgress
                   size={36}
-                  aria-label="Calcolo in corso"
+                  aria-label={t("calculating")}
                   color="primary"
                 />
               ) : (
@@ -238,17 +240,18 @@ export default function FiscalCodeForm() {
                   color="primary"
                   disabled={!isFormComplete}
                 >
-                  Calcola codice fiscale
+                  {t("submit")}
                 </Button>
               )}
 
               <p className="max-w-lg text-center text-xs text-slate-700">
-                I dati vengono elaborati sul server per effettuare il calcolo e
-                non vengono salvati nel database. Leggi l&apos;{" "}
-                <Link className="underline" href="/privacy">
-                  informativa privacy
-                </Link>
-                .
+                {t.rich("privacyNotice", {
+                  privacy: (chunks) => (
+                    <Link className="underline" href="/privacy">
+                      {chunks}
+                    </Link>
+                  ),
+                })}
               </p>
             </div>
           </Grid>

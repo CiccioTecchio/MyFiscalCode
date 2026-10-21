@@ -1,4 +1,7 @@
 import type { NextConfig } from "next";
+import createNextIntlPlugin from "next-intl/plugin";
+
+const withNextIntl = createNextIntlPlugin();
 
 const nextConfig: NextConfig = {
   // Vercel genera autonomamente gli artefatti di deploy. Next.js 16.3 non
@@ -7,4 +10,4 @@ const nextConfig: NextConfig = {
   output: process.env.VERCEL ? undefined : "standalone",
 };
 
-export default nextConfig;
+export default withNextIntl(nextConfig);

@@ -1,17 +1,54 @@
 "use client";
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { AppBar, Button, Toolbar, Typography } from "@mui/material";
+import {
+  AppBar,
+  Button,
+  ToggleButton,
+  ToggleButtonGroup,
+  Toolbar,
+  Typography,
+} from "@mui/material";
+import { useLocale } from "next-intl";
+import { Link, usePathname, useRouter } from "@/i18n/navigation";
+import { routing } from "@/i18n/routing";
 
 const links = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
 ];
 
+type LangType = (typeof routing.locales)[number];
+type LangLabel = "IT" | "EN";
+type ToggleValue = {
+  value: LangType;
+  label: LangLabel;
+  currentLang: LangType;
+};
+
+const ToggleBtn = ({ value, label, currentLang }: ToggleValue) => {
+  const checkCurrentLang = value === currentLang;
+  return (
+    <ToggleButton
+      value={value}
+      className={`${
+        checkCurrentLang
+          ? "!bg-white/15 !text-white"
+          : "!text-slate-200 hover:!bg-white/10 hover:!text-white"
+      } !min-w-0 !px-2 sm:!px-4`}
+    >
+      {label}
+    </ToggleButton>
+  );
+};
+
 export default function Navbar() {
   const pathname = usePathname();
-
+  const router = useRouter();
+  const lang = useLocale() as LangType;
+  const langList: { value: LangType; label: LangLabel }[] = [
+    { value: "it-IT", label: "IT" },
+    { value: "en-US", label: "EN" },
+  ];
   return (
     <AppBar
       position="static"
@@ -50,6 +87,27 @@ export default function Navbar() {
               </Button>
             );
           })}
+          <ToggleButtonGroup
+            value={lang}
+            exclusive
+            onChange={(_, newLang: LangType) => {
+              if (newLang !== lang) {
+                router.replace(pathname, { locale: newLang });
+              }
+            }}
+            aria-label="Lingua"
+          >
+            {langList.map((l) => {
+              return (
+                <ToggleBtn
+                  value={l.value}
+                  label={l.label}
+                  currentLang={lang}
+                  key={l.value}
+                />
+              );
+            })}
+          </ToggleButtonGroup>
         </nav>
       </Toolbar>
     </AppBar>

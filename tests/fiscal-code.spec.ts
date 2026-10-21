@@ -1,5 +1,7 @@
 import { expect, test, type Page } from "@playwright/test";
 
+test.use({ locale: "it-IT" });
+
 async function fillDate(
   page: Page,
   { day, month, year }: { day: string; month: string; year: string },
@@ -28,9 +30,45 @@ async function selectBirthPlace(
   await page.getByRole("option", { name: option }).click();
 }
 
+test.describe("selezione della lingua", () => {
+  test("cambia locale mantenendo la pagina corrente", async ({ page }) => {
+    await page.goto("/it-IT");
+
+    await expect(page).toHaveURL(/\/it-IT$/);
+    await expect(page.locator("html")).toHaveAttribute("lang", "it-IT");
+    await expect(
+      page.getByRole("heading", { name: "Calcola il tuo codice fiscale" }),
+    ).toBeVisible();
+    await expect(
+      page.getByRole("button", { name: "IT", exact: true }),
+    ).toHaveAttribute("aria-pressed", "true");
+
+    await page.getByRole("button", { name: "EN", exact: true }).click();
+
+    await expect(page).toHaveURL(/\/en-US$/);
+    await expect(page.locator("html")).toHaveAttribute("lang", "en-US");
+    await expect(
+      page.getByRole("heading", {
+        name: "Calculate your Italian fiscal code",
+      }),
+    ).toBeVisible();
+    await expect(
+      page.getByRole("button", { name: "EN", exact: true }),
+    ).toHaveAttribute("aria-pressed", "true");
+
+    await page.getByRole("button", { name: "IT", exact: true }).click();
+
+    await expect(page).toHaveURL(/\/it-IT$/);
+    await expect(page.locator("html")).toHaveAttribute("lang", "it-IT");
+    await expect(
+      page.getByRole("heading", { name: "Calcola il tuo codice fiscale" }),
+    ).toBeVisible();
+  });
+});
+
 test.describe("calcolo del codice fiscale", () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto("/");
+    await page.goto("/it-IT");
     await expect(
       page.getByRole("heading", { name: "Calcola il tuo codice fiscale" }),
     ).toBeVisible();
@@ -149,7 +187,7 @@ test.describe("calcolo del codice fiscale", () => {
 
 test.describe("validazione del form", () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto("/");
+    await page.goto("/it-IT");
   });
 
   test("mantiene disabilitato l'invio quando mancano campi obbligatori", async ({

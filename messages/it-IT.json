@@ -1,0 +1,90 @@
+{
+  "HomePage": {
+    "title": "Calcola il tuo codice fiscale"
+  },
+  "FiscalForm": {
+    "addPlaceOrStateOfBirth": "Inserisci Luogo o Stato di nascita",
+    "name": "Nome",
+    "surname": "Cognome",
+    "dateOfBirth": "Data di nascita",
+    "bornInItaly": "Sei nato in Italia?",
+    "y": "Sì",
+    "n": "No",
+    "gender": "Sesso",
+    "calculating": "Calcolo in corso...",
+    "submit": "Calcola codice fiscale",
+    "privacyNotice": "I dati vengono elaborati sul server per effettuare il calcolo e non vengono salvati nel database. Leggi l''<privacy>informativa privacy</privacy>.",
+    "invalidFormat": "Formato non valido"
+  },
+  "FiscalCodeResult": {
+    "unavailableCp": "API degli appunti non disponibile",
+    "computedFiscalCode": "Codice fiscale calcolato",
+    "yourFC": "Il tuo codice fiscale",
+    "copied": "Copiato",
+    "copy": "Copia",
+    "cpCopiatedSucc": "Codice fiscale copiato negli appunti.",
+    "cpCopiatedFailed": "Copia non riuscita: seleziona il codice manualmente."
+  },
+  "PrivacyPage": {
+    "metadata": {
+      "title": "Informativa privacy | My Fiscal Code",
+      "description": "Informazioni sul trattamento dei dati personali."
+    },
+    "title": "Informativa privacy",
+    "lastUpdated": "Ultimo aggiornamento: 16 ottobre 2026",
+    "controller": {
+      "title": "Titolare del trattamento",
+      "defaultName": "Gestore di My Fiscal Code",
+      "contact": "Contatto: <email>{address}</email>",
+      "missingContact": "Prima della pubblicazione configura un indirizzo di contatto con la variabile <variable>PRIVACY_CONTACT_EMAIL</variable>."
+    },
+    "dataProcessed": {
+      "title": "Dati trattati",
+      "body": "Per calcolare il codice fiscale, l'applicazione tratta nome, cognome, data di nascita, sesso e luogo di nascita. Durante la navigazione il fornitore dell'infrastruttura può inoltre trattare dati tecnici, come indirizzo IP, user agent e informazioni sulla richiesta."
+    },
+    "purpose": {
+      "title": "Finalità e base giuridica",
+      "body": "I dati inseriti nel form vengono utilizzati esclusivamente per calcolare e restituire il codice fiscale richiesto. Il trattamento è necessario per fornire il servizio richiesto dall'utente. Gli eventuali dati tecnici sono trattati per erogare e proteggere il sito."
+    },
+    "storage": {
+      "title": "Modalità e conservazione",
+      "body": "Il calcolo avviene sul server. L'applicazione non salva nel database i dati inseriti nel form e non li registra intenzionalmente nei log. I dati restano in memoria per il tempo necessario a elaborare la richiesta. I fornitori tecnici possono conservare log secondo le proprie configurazioni e politiche di conservazione."
+    },
+    "recipients": {
+      "title": "Destinatari e fornitori",
+      "body": "Il sito è ospitato su Vercel. La ricerca del codice catastale viene effettuata nel database MongoDB configurato dal titolare. Questi fornitori possono trattare i dati tecnici necessari a erogare i rispettivi servizi. Eventuali trasferimenti fuori dallo Spazio economico europeo avvengono secondo le garanzie previste dai fornitori e dalla normativa applicabile."
+    },
+    "cookies": {
+      "title": "Cookie e strumenti di tracciamento",
+      "body": "Il codice dell'applicazione non utilizza cookie di profilazione, pubblicità comportamentale o strumenti di analytics. Se in futuro verranno introdotti strumenti non tecnici, questa informativa e le modalità di raccolta del consenso saranno aggiornate prima della loro attivazione."
+    },
+    "rights": {
+      "title": "Diritti dell'utente",
+      "body": "Nei casi previsti dalla normativa, l'utente può chiedere accesso, rettifica, cancellazione, limitazione o opposizione al trattamento dei propri dati. Può inoltre proporre reclamo al <authority>Garante per la protezione dei dati personali</authority>."
+    },
+    "provision": {
+      "title": "Conferimento dei dati",
+      "body": "Il conferimento dei dati richiesti dal form è facoltativo, ma senza tali informazioni non è possibile calcolare il codice fiscale."
+    }
+  },
+  "AboutPage": {
+    "metadata": {
+      "title": "Informazioni | My Fiscal Code",
+      "description": "Informazioni sul progetto My Fiscal Code e sul suo funzionamento."
+    },
+    "title": "Informazioni",
+    "introduction": "Ho realizzato questo sito al fine di esercitarmi con Next.js e con il relativo deploy su Vercel.",
+    "motivation": "L'idea mi è venuta quando avevo bisogno di calcolare un codice fiscale e ho pensato: “Perché devo mandare dei dati sensibili su un server chissà dove? E una volta che i dati sono giunti a destinazione, come vengono elaborati?”",
+    "response": "Così mi sono detto: “se vuoi una cosa fatta bene, fattela da solo” e ho realizzato questo progetto.",
+    "howItWorks": "Il funzionamento è molto semplice:",
+    "steps": {
+      "form": "l'utente compila il form",
+      "calculation": "una Server Action calcola il codice fiscale",
+      "result": "se tutti i dati sono corretti, restituisce il codice fiscale elaborato; altrimenti restituisce un errore."
+    },
+    "processing": "I dati inseriti vengono inviati al server ed elaborati esclusivamente per calcolare il codice fiscale. L'applicazione non li salva nel database né li registra intenzionalmente nei log.",
+    "persistentData": "Gli unici dati persistenti in questo sistema sono la lista dei comuni italiani e la lista degli Stati esteri. Queste liste vengono consultate per ottenere il codice catastale alfanumerico di quattro caratteri associato al luogo di nascita.",
+    "source": "Il codice sorgente è consultabile nel repository <repository>MyFiscalCode su GitHub</repository>.",
+    "repositoryAriaLabel": "Apri il repository MyFiscalCode su GitHub"
+  }
+}

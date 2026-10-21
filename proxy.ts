@@ -1,6 +1,10 @@
 import moment, { type Moment } from "moment";
 import { NextRequest, NextResponse } from "next/server";
 import process from "process";
+import createMiddleware from "next-intl/middleware";
+import { routing } from "./i18n/routing";
+
+const handlei18nRouting = createMiddleware(routing);
 
 function getPositiveInteger(value: string | undefined, fallback: number) {
   const parsedValue = Number.parseInt(value ?? "", 10);
@@ -78,7 +82,7 @@ function createRateLimitedResponse(blockedUntil: Moment, now: Moment) {
   );
 }
 
-export function proxy(request: NextRequest) {
+export function handleRateLimit(request: NextRequest) {
   const now = moment();
   const clientIp = getClientIP(request);
   const existing = requests.get(clientIp);
@@ -107,6 +111,14 @@ export function proxy(request: NextRequest) {
   return createAllowedResponse(remaining);
 }
 
+export function proxy(request: NextRequest) {
+  const { pathname } = request.nextUrl;
+
+  return pathname === "/api" || pathname.startsWith("/api/")
+    ? handleRateLimit(request)
+    : handlei18nRouting(request);
+}
+
 export const config = {
-  matcher: ["/api/:path*"],
+  matcher: ["/api/:path*", "/((?!api|trpc|_next|_vercel|.*\\..*).*)"],
 };
